@@ -9,38 +9,38 @@ const Cards = ({ results }) => {
     display = results.map((x) => {
       let { id, name, image, location, status } = x;
       return (
-        /*   <div classNameName="col-4">
-          <div classNameName="">
-            <img src={image} alt="" classNameName="" />
+        /*   <div className="col-4">
+          <div className="">
+            <img src={image} alt="" className="" />
           </div>
         </div> */
-        <div classNameName="col-4 ">
+        <div className="col-4 ">
           {" "}
-          <div classNameName="card mb-5 position-relative" id="hauteur">
-            <img src={image} classNameName="card-img-top" alt="..." />
-            <div classNameName="card-body">
-              <h5 classNameName="card-title">{name}</h5>
-              <div classNameName="content">
-                <div classNameName="fs-6">Last location : </div>
-                <div classNameName="">{location.name}</div>
+          <div className="card mb-5 position-relative" id="hauteur">
+            <img src={image} className="card-img-top" alt="..." />
+            <div className="card-body">
+              <h5 className="card-title">{name}</h5>
+              <div className="content">
+                <div className="fs-6">Last location : </div>
+                <div className="">{location.name}</div>
               </div>
             </div>
             {(() => {
               if (status === "Dead") {
                 return (
-                  <div classNameName="position-absolute badge bg-danger">
+                  <div className="position-absolute badge bg-danger">
                     {status}
                   </div>
                 );
               } else if (status === "Alive") {
                 return (
-                  <div classNameName="position-absolute badge bg-success">
+                  <div className="position-absolute badge bg-success">
                     {status}
                   </div>
                 );
               } else {
                 return (
-                  <div classNameName="position-absolute badge bg-secondary">
+                  <div className="position-absolute badge bg-secondary">
                     {status}
                   </div>
                 );
