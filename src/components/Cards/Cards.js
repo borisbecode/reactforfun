@@ -1,20 +1,21 @@
 import React from "react";
 import styles from "./Cards.modules.scss";
+import { Link } from "react-router-dom";
 
-const Cards = ({ results }) => {
+const Cards = ({ results, page }) => {
   let display;
-  console.log(results);
+  /*  console.log(results); */
 
   if (results) {
     display = results.map((x) => {
       let { id, name, image, location, status } = x;
       return (
-        /*   <div className="col-4">
-          <div className="">
-            <img src={image} alt="" className="" />
-          </div>
-        </div> */
-        <div className="col-4 ">
+        <Link
+          style={{ textDecoration: "none" }}
+          to={`${page}${id}`}
+          key={id}
+          className="col-4 text-dark"
+        >
           {" "}
           <div className="card mb-5 position-relative" id="hauteur">
             <img src={image} className="card-img-top" alt="..." />
@@ -47,7 +48,7 @@ const Cards = ({ results }) => {
               }
             })()}
           </div>
-        </div>
+        </Link>
       );
     });
   } else {

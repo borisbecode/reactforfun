@@ -1,12 +1,13 @@
 import React from "react";
-import styles from "./btn.scss";
 
-const FilterBTN = ({ name, index, items }) => {
+const FilterBTN = ({ name, index, items, task, setPageNumber }) => {
   return (
     <div>
       <style jsx>
         {`
           .x:checked + label {
+            background-color: #0b5ed7;
+            color: white;
           }
           input[type="radio"] {
             display: none;
@@ -15,6 +16,10 @@ const FilterBTN = ({ name, index, items }) => {
       </style>
       <div className="form-check">
         <input
+          onClick={() => {
+            setPageNumber(1);
+            task(items);
+          }}
           className="form-check-input x"
           type="radio"
           name={name}

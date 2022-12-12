@@ -7,12 +7,39 @@ import Cards from "./components/Cards/Cards";
 import Filters from "./components/Filters/Filters";
 import Pagination from "./components/Pagination/Pagination";
 import Search from "./components/Search/Search";
+import Navbar from "./components/Navbar/Navbar";
+import Episodes from "./Pages/Episodes";
+import Location from "./Pages/Location";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import CardDetails from "./components/Cards/CardDetails";
 function App() {
+  return (
+    <Router>
+      <div className="App">
+        {" "}
+        <Navbar />
+      </div>
+      <Routes>
+        {" "}
+        <Route path="/" element={<Home />} />{" "}
+        <Route path="/:id" element={<CardDetails />} />{" "}
+        <Route path="/Episodes" element={<Episodes />} />{" "}
+        <Route path="/Episodes/:id" element={<CardDetails />} />{" "}
+        <Route path="/Location" element={<Location />} />{" "}
+        <Route path="/Location/:id" element={<CardDetails />} />{" "}
+      </Routes>
+    </Router>
+  );
+}
+const Home = () => {
   let [pageNumber, setPageNumber] = useState(1);
   let [search, setSearch] = useState("");
   let [fetchedData, updateFetchedDAta] = useState([]);
   let { info, results } = fetchedData;
-  let api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}`;
+  let [status, setStatus] = useState("");
+  let [gender, setGender] = useState("");
+  let [species, setSpecies] = useState("");
+  let api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}&status=${status}&gender=${gender}&species=${species}`;
 
   useEffect(() => {
     (async function () {
@@ -23,20 +50,20 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1 className="text-center ubuntu my-4">
-          Rick & Morty <span className="text-primary">Wiki</span>{" "}
-        </h1>
-      </header>
-
+      <h1 className="text-center mb-4">Characters</h1>
       <Search setPageNumber={setPageNumber} setSearch={setSearch} />
 
       <div className="container">
         <div className="row">
-          <Filters />{" "}
+          <Filters
+            setSpecies={setSpecies}
+            setGender={setGender}
+            setStatus={setStatus}
+            setPageNumber={setPageNumber}
+          />{" "}
           <div className="col-8">
             <div className="row">
-              <Cards results={results} />
+              <Cards page="/" results={results} />
             </div>
           </div>
         </div>
@@ -48,6 +75,6 @@ function App() {
       />
     </div>
   );
-}
+};
 
 export default App;
